@@ -1,18 +1,30 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowRight, Check, Download, Globe, MousePointer, Settings } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState } from "react"
+import { countries } from "@/constants/countries"
+import { chromeWebStoreLink } from "@/constants/linkNames"
+import { mailAddress } from "@/constants/mailAddress"
 
-export default function LandingPage() {
+const LandingPage = () => {
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountry(e.target.value);
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
         <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold">
             <Globe className="h-5 w-5" />
-            <span>KoreaSelect</span>
+            <span>KoreaDropdown</span>
           </div>
           <nav className="hidden gap-6 md:flex">
             <Link href="#features" className="text-sm font-medium text-gray-600 transition-colors hover:text-black">
@@ -26,7 +38,7 @@ export default function LandingPage() {
             </Link>
           </nav>
           <Button asChild variant="outline" className="hidden md:inline-flex">
-            <Link href="#download">
+            <Link href={chromeWebStoreLink}>
               <Download className="mr-2 h-4 w-4" />
               설치하기
             </Link>
@@ -59,17 +71,18 @@ export default function LandingPage() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    드롭다운에서 한국을 자동으로 선택해주는 크롬 확장 프로그램
+                    찾지 마세요.<br />
+                    한국은 이미 선택됐습니다.
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl">
-                    웹사이트에서 국가를 선택할 때마다 스크롤을 내릴 필요가 없습니다. KoreaSelect가 자동으로 한국을 찾아
+                    웹사이트에서 국가를 선택할 때마다 스크롤을 내릴 필요가 없습니다. KoreaDropdown이 자동으로 한국을 찾아
                     선택해 드립니다.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button asChild size="lg" className="group">
-                    <Link href="#download">
-                      지금 설치하기
+                    <Link href={chromeWebStoreLink}>
+                      지금 무료로 설치하기
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -87,7 +100,66 @@ export default function LandingPage() {
                       <div className="h-2 w-2 rounded-full bg-gray-400"></div>
                       <div className="ml-auto text-xs text-gray-500">example.com</div>
                     </div>
-                    <div className="mt-8 space-y-6">
+                    <div className="mx-auto mt-12 max-w-4xl xl:max-w-5xl">
+                      <Tabs defaultValue="before" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 bg-gray-200">
+                          <TabsTrigger value="before">확장 프로그램 없이</TabsTrigger>
+                          <TabsTrigger value="after">확장 프로그램 설치 후</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="before" className="mt-6">
+                          <div className="overflow-hidden rounded-lg border bg-white shadow">
+                            <div className="p-6">
+                              <div className="space-y-4">
+                                <div className="space-y-2">
+                                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                    국가 선택
+                                  </label>
+                                  <select 
+                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                    onChange={handleCountryChange}
+                                    value={selectedCountry}
+                                  >
+                                    {countries.map((country) => (
+                                      <option key={country} value={country}>
+                                        {country}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                                <p className="text-sm text-gray-500">한국을 찾기 위해 스크롤을 내려야 합니다.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </TabsContent>
+                        <TabsContent value="after" className="mt-6">
+                          <div className="overflow-hidden rounded-lg border bg-white shadow">
+                            <div className="p-6">
+                              <div className="space-y-4">
+                                <div className="space-y-2">
+                                  <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                    국가 선택
+                                  </label>
+                                  <div className="relative">
+                                    <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                      {countries.map((country) => (
+                                        <option key={country} value={country}>
+                                          {country}
+                                        </option>
+                                      ))}
+                                    </select>
+                                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                                      <Check className="h-4 w-4 text-gray-900" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <p className="text-sm text-gray-500">KoreaDropdown이 자동으로 한국을 찾아 선택했습니다!</p>
+                              </div>
+                            </div>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
+                    </div>
+                    {/* <div className="mt-8 space-y-6">
                       <div className="space-y-2">
                         <div className="h-4 w-32 rounded bg-gray-300"></div>
                         <div className="relative">
@@ -110,7 +182,7 @@ export default function LandingPage() {
                       <div className="flex justify-end">
                         <div className="h-10 w-24 rounded bg-gray-800"></div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -124,7 +196,7 @@ export default function LandingPage() {
                 <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">주요 기능</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">시간을 절약하는 스마트한 방법</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  KoreaSelect는 웹사이트에서 국가 선택 과정을 자동화하여 시간을 절약해 드립니다.
+                  KoreaDropdown은 웹사이트에서 국가 선택 과정을 자동화하여 시간을 절약해 드립니다.
                 </p>
               </div>
             </div>
@@ -160,15 +232,17 @@ export default function LandingPage() {
                 <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">사용 방법</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">간단한 3단계로 시작하세요</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  KoreaSelect는 설치 후 바로 작동합니다. 별도의 복잡한 설정이 필요하지 않습니다.
+                  KoreaDropdown는 설치 후 바로 작동합니다. 별도의 복잡한 설정이 필요하지 않습니다.
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-12 md:grid-cols-3 xl:gap-10 2xl:gap-12">
+            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-12 md:grid-cols-3 xl:gap-10 2xl:gap-12 break-keep">
               <div className="flex flex-col items-center space-y-4 text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-900 text-white">1</div>
                 <h3 className="text-xl font-bold">크롬 웹 스토어에서 설치</h3>
-                <p className="text-gray-500">Chrome 웹 스토어에서 KoreaSelect를 검색하고 '추가' 버튼을 클릭하세요.</p>
+                <p className="text-gray-500">
+                  Chrome 웹 스토어에서 KoreaDropdown을 검색하고 '추가' 버튼을 클릭하세요.
+                </p>
               </div>
               <div className="flex flex-col items-center space-y-4 text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-900 text-white">2</div>
@@ -187,113 +261,21 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section id="demo" className="w-full bg-gray-50 py-12 md:py-24 lg:py-32">
-          <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">데모</div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">직접 확인해보세요</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  KoreaSelect가 어떻게 작동하는지 직접 확인해보세요.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto mt-12 max-w-4xl xl:max-w-5xl">
-              <Tabs defaultValue="before" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="before">확장 프로그램 없이</TabsTrigger>
-                  <TabsTrigger value="after">확장 프로그램 설치 후</TabsTrigger>
-                </TabsList>
-                <TabsContent value="before" className="mt-6">
-                  <div className="overflow-hidden rounded-lg border bg-white shadow">
-                    <div className="p-6">
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                            국가 선택
-                          </label>
-                          <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                            <option>Afghanistan</option>
-                            <option>Albania</option>
-                            <option>Algeria</option>
-                            {/* 많은 국가들 */}
-                            <option>Japan</option>
-                            <option>Kazakhstan</option>
-                            <option>Kenya</option>
-                            <option>Korea, North</option>
-                            <option>Korea, South</option>
-                            <option>Kuwait</option>
-                            {/* 더 많은 국가들 */}
-                          </select>
-                        </div>
-                        <p className="text-sm text-gray-500">한국을 찾기 위해 스크롤을 내려야 합니다.</p>
-                      </div>
-                    </div>
-                  </div>
-                </TabsContent>
-                <TabsContent value="after" className="mt-6">
-                  <div className="overflow-hidden rounded-lg border bg-white shadow">
-                    <div className="p-6">
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                            국가 선택
-                          </label>
-                          <div className="relative">
-                            <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                              <option selected>Korea, South</option>
-                              <option>Afghanistan</option>
-                              <option>Albania</option>
-                              {/* 다른 국가들 */}
-                            </select>
-                            <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                              <Check className="h-4 w-4 text-gray-900" />
-                            </div>
-                          </div>
-                        </div>
-                        <p className="text-sm text-gray-500">KoreaSelect가 자동으로 한국을 찾아 선택했습니다!</p>
-                      </div>
-                    </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-          </div>
-        </section>
-        <section id="download" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container mx-auto max-w-full grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10 xl:gap-16 2xl:gap-20">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                지금 바로 KoreaSelect를 설치하고 시간을 절약하세요
-              </h2>
-              <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Chrome 웹 스토어에서 무료로 설치할 수 있습니다. 설치 후 바로 사용 가능합니다.
-              </p>
-            </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
-              <Button size="lg" className="group">
-                <Download className="mr-2 h-5 w-5" />
-                Chrome 웹 스토어에서 설치하기
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </div>
-          </div>
-        </section>
-        <section id="faq" className="w-full bg-gray-50 py-12 md:py-24 lg:py-32">
+        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
           <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm">FAQ</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">자주 묻는 질문</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  KoreaSelect에 대해 궁금한 점이 있으신가요? 아래에서 답변을 찾아보세요.
+                  KoreaDropdown에 대해 궁금한 점이 있으신가요? 아래에서 답변을 찾아보세요.
                 </p>
               </div>
             </div>
             <div className="mx-auto mt-12 max-w-4xl xl:max-w-5xl space-y-4">
               <Card>
                 <CardHeader>
-                  <CardTitle>KoreaSelect는 모든 웹사이트에서 작동하나요?</CardTitle>
+                  <CardTitle>KoreaDropdown은 모든 웹사이트에서 작동하나요?</CardTitle>
                   <CardDescription>
                     대부분의 웹사이트에서 작동합니다. 일부 특수한 형태의 드롭다운이나 커스텀 UI를 사용하는
                     웹사이트에서는 작동하지 않을 수 있습니다.
@@ -304,7 +286,7 @@ export default function LandingPage() {
                 <CardHeader>
                   <CardTitle>개인 정보를 수집하나요?</CardTitle>
                   <CardDescription>
-                    아니요, KoreaSelect는 어떠한 개인 정보도 수집하지 않습니다. 모든 작업은 사용자의 브라우저 내에서만
+                    아니요, KoreaDropdown은 어떠한 개인 정보도 수집하지 않습니다. 모든 작업은 사용자의 브라우저 내에서만
                     이루어집니다.
                   </CardDescription>
                 </CardHeader>
@@ -329,47 +311,18 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
-            <div className="mx-auto max-w-2xl xl:max-w-3xl 2xl:max-w-4xl space-y-4 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">뉴스레터 구독하기</h2>
-              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                새로운 기능과 업데이트 소식을 가장 먼저 받아보세요.
-              </p>
-              <div className="mx-auto w-full max-w-md space-y-2">
-                <form className="flex space-x-2">
-                  <input
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="이메일 주소를 입력하세요"
-                    type="email"
-                  />
-                  <Button type="submit">구독하기</Button>
-                </form>
-                <p className="text-xs text-gray-500">
-                  구독은 언제든지 취소할 수 있습니다. 개인정보는 안전하게 보호됩니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       <footer className="w-full border-t bg-gray-50 py-6 md:py-12">
         <div className="container mx-auto max-w-full flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6 lg:px-8 xl:px-10 2xl:px-12">
           <div className="flex items-center gap-2 font-bold">
             <Globe className="h-5 w-5" />
-            <span>KoreaSelect</span>
+            <span>KoreaDropdown</span>
           </div>
           <p className="text-center text-sm text-gray-500 md:text-left">
-            &copy; {new Date().getFullYear()} KoreaSelect. 모든 권리 보유.
+            &copy; {new Date().getFullYear()} KoreaDropdown. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-sm text-gray-500 hover:underline">
-              개인정보 처리방침
-            </Link>
-            <Link href="#" className="text-sm text-gray-500 hover:underline">
-              이용약관
-            </Link>
-            <Link href="#" className="text-sm text-gray-500 hover:underline">
+            <Link href={`mailto:${mailAddress}`} className="text-sm text-gray-500 hover:underline">
               문의하기
             </Link>
           </div>
@@ -378,3 +331,5 @@ export default function LandingPage() {
     </div>
   )
 }
+
+export default LandingPage;

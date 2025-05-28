@@ -1,0 +1,1 @@
+export const chromeWebStoreLink = "https://chromewebstore.google.com/detail/koreadropdown/koreadropdown";
