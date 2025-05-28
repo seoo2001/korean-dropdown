@@ -12,10 +12,21 @@ import { chromeWebStoreLink } from "@/constants/linkNames"
 import { mailAddress } from "@/constants/mailAddress"
 
 const LandingPage = () => {
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedBeforeCountry, setSelectedBeforeCountry] = useState<string>("");
+  const [selectedAfterCountry, setSelectedAfterCountry] = useState<string>("");
 
-  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCountry(e.target.value);
+
+  const handleCountryChangeBefore = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBeforeCountry(e.target.value);
+  }
+
+  const handleCountryChangeAfter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedAfterCountry(e.target.value);
+  }
+
+  const handleAfterDropdownClick = () => {
+    const koreaOption = "Korea, South";
+    setSelectedAfterCountry(koreaOption);
   }
 
   return (
@@ -114,10 +125,10 @@ const LandingPage = () => {
                                   <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                                     국가 선택
                                   </label>
-                                  <select 
+                                  <select
                                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                    onChange={handleCountryChange}
-                                    value={selectedCountry}
+                                    onChange={handleCountryChangeBefore}
+                                    value={selectedBeforeCountry}
                                   >
                                     {countries.map((country) => (
                                       <option key={country} value={country}>
@@ -140,7 +151,12 @@ const LandingPage = () => {
                                     국가 선택
                                   </label>
                                   <div className="relative">
-                                    <select className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                    <select
+                                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                      onChange={handleCountryChangeAfter}
+                                      value={selectedAfterCountry}
+                                      onClick={handleAfterDropdownClick}
+                                    >
                                       {countries.map((country) => (
                                         <option key={country} value={country}>
                                           {country}
