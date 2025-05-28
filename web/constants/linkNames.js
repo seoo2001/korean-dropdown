@@ -1,1 +1,1 @@
-export const chromeWebStoreLink = "https://chromewebstore.google.com/detail/koreadropdown/koreadropdown";
+export const chromeWebStoreLink = "https://chromewebstore.google.com/detail/koreandropdown/koreandropdown";
