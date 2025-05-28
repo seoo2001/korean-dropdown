@@ -1,6 +1,6 @@
 {
-    "name": "Hello Extensions",
-    "description": "Base Level Extension",
+    "name": "KoreanDropdown",
+    "description": "KoreanDropdown is a Chrome extension that automatically selects 'Korea' in dropdown menus on websites.",
     "version": "1.0",
     "manifest_version": 3,
     "content_scripts": [
