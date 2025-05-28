@@ -24,7 +24,7 @@ const koreaDictionary = [
 
 // 드롭다운 감지 즉시 시작
 const dropdowns = detectDropdowns();
-
+console.log(dropdowns);
 // 드롭다운 요소를 감지하는 함수
 function detectDropdowns() {
     // 일반적인 드롭다운 선택자들
@@ -37,7 +37,6 @@ function detectDropdowns() {
         '[data-dropdown]',           // data-dropdown 속성
         '[aria-expanded]'            // aria-expanded 속성이 있는 요소
     ];
-
     // 모든 드롭다운 요소 찾기
     const dropdowns = document.querySelectorAll(dropdownSelectors.join(','));
 
@@ -109,5 +108,15 @@ function selectKorea(dropdowns) {
         });
     });
 }
+
+window.addEventListener('click', () => {
+    // 눌린게 dropdonow selecter에 있는지 판단
+    const target = event.target;
+    const dropdowns = detectDropdowns();
+    if (dropdowns.some(dropdown => dropdown.element.contains(target))) {
+        console.log('click');
+        selectKorea(dropdowns);
+    }
+});
 
 selectKorea(dropdowns);
