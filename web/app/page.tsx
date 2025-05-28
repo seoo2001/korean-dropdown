@@ -75,7 +75,7 @@ const LandingPage = () => {
           </Button>
         </div>
       </header>
-      <main className="flex-1">
+      <main className="flex-1 break-keep">
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] 2xl:grid-cols-[1fr_700px]">
@@ -163,9 +163,6 @@ const LandingPage = () => {
                                         </option>
                                       ))}
                                     </select>
-                                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                                      <Check className="h-4 w-4 text-gray-900" />
-                                    </div>
                                   </div>
                                 </div>
                                 <p className="text-sm text-gray-500">KoreaDropdown이 자동으로 한국을 찾아 선택했습니다!</p>
@@ -252,7 +249,7 @@ const LandingPage = () => {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-12 md:grid-cols-3 xl:gap-10 2xl:gap-12 break-keep">
+            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 py-12 md:grid-cols-3 xl:gap-10 2xl:gap-12">
               <div className="flex flex-col items-center space-y-4 text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-900 text-white">1</div>
                 <h3 className="text-xl font-bold">크롬 웹 스토어에서 설치</h3>
@@ -324,6 +321,27 @@ const LandingPage = () => {
                   </CardDescription>
                 </CardHeader>
               </Card>
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+          <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+            <div className="mx-auto max-w-2xl xl:max-w-3xl 2xl:max-w-4xl space-y-8 text-center">
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">개발자에게 마음 한 잔 보내기</h2>
+                <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  KoreaDropdown이 유용하셨다면, 개발자에게 따뜻한 커피 한 잔을 선물해주세요 ☕️
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center space-y-6">
+                <div className="w-48 h-48 bg-white rounded-lg shadow-md p-4 flex items-center justify-center">
+                  <img src="/kakao-pay.png" alt="kakao" className="rounded-lg" />
+                </div>
+                <p className="text-sm text-gray-500">
+                  후원해주신 금액은 더 나은 서비스 개발에 사용됩니다.
+                </p>
+              </div>
             </div>
           </div>
         </section>
