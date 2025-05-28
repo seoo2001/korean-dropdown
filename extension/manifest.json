@@ -1,17 +1,13 @@
 {
-    "name": "KoreanDropdown",
-    "description": "KoreanDropdown is a Chrome extension that automatically selects 'Korea' in dropdown menus on websites.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "content_scripts": [
-        {
-            "js": [
-                "scripts/content.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ],
-            "type": "module"
-        }
-    ]
+  "name": "KoreanDropdown",
+  "description": "KoreanDropdown은 웹사이트의 드롭다운 메뉴에서 'Korea'를 자동으로 선택하는 크롬 확장 프로그램입니다.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": ["<all_urls>"],
+      "type": "module"
+    }
+  ]
 }
