@@ -1,3 +1,4 @@
+// 한국 명칭 목록
 const koreaDictionary = [
     "south korea",
     "korea, south",
@@ -22,10 +23,7 @@ const koreaDictionary = [
 ]
 
 // 드롭다운 감지 즉시 시작
-console.log("Content Script 실행");
-const initialDropdowns = detectDropdowns();
-console.log('초기 드롭다운 감지:', initialDropdowns);
-// observeDropdownChanges();
+const dropdowns = detectDropdowns();
 
 // 드롭다운 요소를 감지하는 함수
 function detectDropdowns() {
@@ -86,30 +84,7 @@ function detectDropdowns() {
     return dropdownInfo;
 }
 
-// 드롭다운 변경 감지
-function observeDropdownChanges() {
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && 
-                (mutation.attributeName === 'aria-expanded' || 
-                 mutation.attributeName === 'class')) {
-                const dropdownInfo = detectDropdowns();
-                console.log('드롭다운 상태 변경 감지:', dropdownInfo);
-            }
-        });
-    });
-
-    // 페이지의 모든 요소 관찰
-    observer.observe(document.body, {
-        attributes: true,
-        childList: true,
-        subtree: true
-    });
-}
-
-function selectKorea() {
-    const dropdowns = detectDropdowns();
-
+function selectKorea(dropdowns) {
     dropdowns.forEach(dropdown => {
         dropdown.options.forEach(option => {
             if (koreaDictionary.includes(option.text.toLowerCase())) {
@@ -130,14 +105,9 @@ function selectKorea() {
                         }
                     });
                 }
-                console.log('드롭다운 선택됨:', {
-                    element: dropdown.element,
-                    selectedValue: option.value,
-                    selectedText: option.text
-                });
             }
         });
     });
 }
 
-selectKorea();
+selectKorea(dropdowns);
