@@ -1,7 +1,7 @@
 {
-  "name": "KoreanDropdown",
-  "description": "KoreanDropdown은 웹사이트의 드롭다운 메뉴에서 'Korea'를 자동으로 선택하는 크롬 확장 프로그램입니다.",
-  "version": "1.0",
+  "name": "KoreaDropdown",
+  "description": "KoreaDropdown은 웹사이트의 드롭다운 메뉴에서 'Korea'를 자동으로 선택하는 크롬 확장 프로그램입니다.",
+  "version": "1.1",
   "manifest_version": 3,
   "content_scripts": [
     {
@@ -9,5 +9,11 @@
       "matches": ["<all_urls>"],
       "type": "module"
     }
-  ]
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
