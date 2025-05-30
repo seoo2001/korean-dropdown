@@ -359,6 +359,9 @@ const LandingPage = () => {
             <Link href={`mailto:${mailAddress}`} className="text-sm text-gray-500 hover:underline">
               문의하기
             </Link>
+            <Link href="/privacy-policy" className="text-sm text-gray-500 hover:underline">
+              개인정보처리방침
+            </Link>
           </div>
         </div>
       </footer>
