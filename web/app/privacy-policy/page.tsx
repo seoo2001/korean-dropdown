@@ -75,7 +75,7 @@ const PrivacyPolicyPage = () => {
               </div>
               <div className="flex items-center gap-2 text-sm text-blue-500">
                 <Shield className="h-4 w-4" />
-                <span>최종 수정일: {new Date().toLocaleDateString('ko-KR')}</span>
+                <span>최종 수정일: 2025. 06. 11</span>
               </div>
             </div>
           </div>
@@ -242,7 +242,7 @@ const PrivacyPolicyPage = () => {
                       현재 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.
                     </div>
                     <ul className="list-disc pl-6 space-y-1">
-                      <li>시행일자: {new Date().toLocaleDateString('ko-KR')}</li>
+                      <li>시행일자: 2025. 06. 11</li>
                       <li>변경사항이 있는 경우 웹사이트를 통해 사전 공지</li>
                     </ul>
                   </CardDescription>
@@ -281,7 +281,7 @@ const PrivacyPolicyPage = () => {
             <span>KoreaDropdown</span>
           </div>
           <p className="text-center text-sm text-gray-500 md:text-left">
-            &copy; {new Date().getFullYear()} KoreaDropdown. All rights reserved.
+            &copy; 2025 KoreaDropdown. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href="/" className="text-sm text-gray-500 hover:underline">

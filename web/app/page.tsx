@@ -353,7 +353,7 @@ const LandingPage = () => {
             <span>KoreaDropdown</span>
           </div>
           <p className="text-center text-sm text-gray-500 md:text-left">
-            &copy; {new Date().getFullYear()} KoreaDropdown. All rights reserved.
+            &copy; 2025 KoreaDropdown. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href={`mailto:${mailAddress}`} className="text-sm text-gray-500 hover:underline">
