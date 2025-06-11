@@ -24,7 +24,6 @@ const koreaDictionary = [
 
 // 드롭다운 감지 즉시 시작
 const dropdowns = detectDropdowns();
-console.log(dropdowns);
 // 드롭다운 요소를 감지하는 함수
 function detectDropdowns() {
     // 일반적인 드롭다운 선택자들
@@ -114,7 +113,6 @@ window.addEventListener('click', () => {
     const target = event.target;
     const dropdowns = detectDropdowns();
     if (dropdowns.some(dropdown => dropdown.element.contains(target))) {
-        console.log('click');
         selectKorea(dropdowns);
     }
 });
