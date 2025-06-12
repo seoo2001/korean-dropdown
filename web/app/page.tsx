@@ -8,7 +8,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useState } from "react"
 import { countries } from "@/constants/countries"
-import { chromeWebStoreLink } from "@/constants/linkNames"
+import { chromeWebStoreLink, githubLink } from "@/constants/linkNames"
 import { mailAddress } from "@/constants/mailAddress"
 
 const LandingPage = () => {
@@ -356,6 +356,9 @@ const LandingPage = () => {
             &copy; 2025 KoreaDropdown. All rights reserved.
           </p>
           <div className="flex gap-4">
+            <Link href={githubLink} className="text-sm text-gray-500 hover:underline">
+              Github
+            </Link>
             <Link href={`mailto:${mailAddress}`} className="text-sm text-gray-500 hover:underline">
               문의하기
             </Link>
