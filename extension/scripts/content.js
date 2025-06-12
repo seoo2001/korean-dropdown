@@ -108,8 +108,8 @@ function selectKorea(dropdowns) {
     });
 }
 
-window.addEventListener('click', () => {
-    // 눌린게 dropdonow selecter에 있는지 판단
+window.addEventListener('click', (event) => {
+    // 눌린게 dropdown selector에 있는지 판단
     const target = event.target;
     const dropdowns = detectDropdowns();
     if (dropdowns.some(dropdown => dropdown.element.contains(target))) {
