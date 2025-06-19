@@ -5,8 +5,12 @@
   "manifest_version": 3,
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
-      "matches": ["<all_urls>"]
+      "js": [
+        "scripts/content.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ],
   "icons": {
@@ -14,5 +18,10 @@
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "koreadropdown@example.com"
+    }
   }
 }
