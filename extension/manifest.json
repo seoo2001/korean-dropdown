@@ -6,8 +6,7 @@
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
-      "matches": ["<all_urls>"],
-      "type": "module"
+      "matches": ["<all_urls>"]
     }
   ],
   "icons": {
