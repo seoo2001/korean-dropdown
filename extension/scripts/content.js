@@ -87,9 +87,8 @@ function selectKorea(dropdowns) {
         dropdown.options.forEach(option => {
             if (koreaDictionary.includes(option.text.toLowerCase())) {
                 // select 태그인 경우
-                if (dropdown.type === 'select') {
+                if (dropdown.type === 'select' && dropdown.element.value !== option.value) {
                     dropdown.element.value = option.value;
-                    // change 이벤트 발생시켜 페이지의 이벤트 핸들러 실행
                     const event = new Event('change', { bubbles: true });
                     dropdown.element.dispatchEvent(event);
                 }
@@ -116,5 +115,3 @@ window.addEventListener('click', (event) => {
         selectKorea(dropdowns);
     }
 });
-
-selectKorea(dropdowns);
