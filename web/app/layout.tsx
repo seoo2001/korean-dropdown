@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['크롬 확장 프로그램', '한국', 'dropdown', '자동 선택', '브라우저 확장', 'chrome extension'],
   
   verification: {
-    google: "PXnBHzUyOfHNMS4Wzww_7LrEY9YrkSaeWW44fhvuVm0"
+    google: "qFYAIu9Zy3Z9MuNAIb9045mKRw61cgY1-YqQM-A0mhI"
   },
   alternates: {
     canonical: 'https://dropdown.ilez.xyz',
