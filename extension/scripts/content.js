@@ -19,7 +19,9 @@ const koreaDictionary = [
     "korea rep",
     "korea (rep.)",
     "korea (republic)",
-    "republic of korea (south korea)"
+    "republic of korea (south korea)",
+    "south korea, seoul",
+    "korea, republic of (south)"
 ]
 
 // 드롭다운 감지 즉시 시작
