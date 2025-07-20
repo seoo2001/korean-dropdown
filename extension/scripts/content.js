@@ -95,10 +95,28 @@ window.addEventListener('click', (event) => {
 
     if (clickedDropdown) {
       const formattedDropdown = formatDropdown(clickedDropdown);
-      
+  
       if (formattedDropdown) {
-          selectKorea(formattedDropdown);
+        selectKorea(formattedDropdown);
       }
       return;
     }
-});
+  
+    setTimeout(() => {
+      const allOptions = detectReactSelect();
+      selectReactSelect(allOptions);
+    }, 100);
+  });
+  
+  function detectReactSelect() {
+    return document.querySelectorAll('[id^="react-select-"][id*="-option-"]');
+  }
+  
+  function selectReactSelect(allOptions) {
+    allOptions.forEach((option) => {
+      const text = option.textContent.trim().toLowerCase();
+      if (koreaDictionary.includes(text)) {
+        option.click();
+      }
+    });
+  }
