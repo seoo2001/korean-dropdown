@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KoreaDropdown</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 280px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #003478 0%, #0052b4 100%);
+      padding: 20px 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flag {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .header-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-text h1 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .status-badge.on {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .status-badge.off {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      transition: background 0.25s ease;
+    }
+
+    .status-badge.on .status-dot {
+      background: #69ff85;
+    }
+
+    .status-badge.off .status-dot {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+    }
+
+    .toggle-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toggle-label .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .toggle-label .subtitle {
+      font-size: 11px;
+      color: #6c757d;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #ced4da;
+      border-radius: 26px;
+      transition: background 0.25s ease;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background: #ffffff;
+      border-radius: 50%;
+      transition: transform 0.25s ease;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    input:checked + .slider {
+      background: #0052b4;
+    }
+
+    input:checked + .slider::before {
+      transform: translateX(22px);
+    }
+
+    .footer {
+      padding: 12px 20px 16px;
+      border-top: 1px solid #f0f0f0;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 10px;
+      color: #adb5bd;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-text">
+      <h1>KoreaDropdown</h1>
+      <span class="status-badge off" id="statusBadge">
+        <span class="status-dot"></span>
+        <span id="statusText">OFF</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="toggle-row">
+      <div class="toggle-label">
+        <span class="title">자동 선택</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="enableToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <p>v1.5.0 · KoreaDropdown</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
