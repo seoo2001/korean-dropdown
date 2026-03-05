@@ -90,28 +90,32 @@ function selectKorea(dropdown) {
 }
 
 window.addEventListener('click', (event) => {
-    const target = event.target;
-    const clickedDropdown = target.closest('select, [role="combobox"], [role="listbox"], .dropdown, .select, [data-dropdown], li');
+    chrome.storage.sync.get({ enabled: true }, (result) => {
+      if (!result.enabled) return;
 
-    if (clickedDropdown) {
-      const formattedDropdown = formatDropdown(clickedDropdown);
-  
-      if (formattedDropdown) {
-        selectKorea(formattedDropdown);
+      const target = event.target;
+      const clickedDropdown = target.closest('select, [role="combobox"], [role="listbox"], .dropdown, .select, [data-dropdown], li');
+
+      if (clickedDropdown) {
+        const formattedDropdown = formatDropdown(clickedDropdown);
+
+        if (formattedDropdown) {
+          selectKorea(formattedDropdown);
+        }
+        return;
       }
-      return;
-    }
-  
-    setTimeout(() => {
-      const allOptions = detectReactSelect();
-      selectReactSelect(allOptions);
-    }, 100);
+
+      setTimeout(() => {
+        const allOptions = detectReactSelect();
+        selectReactSelect(allOptions);
+      }, 100);
+    });
   });
-  
+
   function detectReactSelect() {
     return document.querySelectorAll('[id^="react-select-"][id*="-option-"]');
   }
-  
+
   function selectReactSelect(allOptions) {
     allOptions.forEach((option) => {
       const text = option.textContent.trim().toLowerCase();
