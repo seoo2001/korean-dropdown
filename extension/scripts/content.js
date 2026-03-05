@@ -24,6 +24,10 @@ const koreaDictionary = [
     "korea, republic of (south)"
 ]
 
+function normalizeCountryText(text) {
+    return text.toLowerCase().replace(/\s*\(\+\d+\)\s*$/, '').trim();
+}
+
 // 드롭다운 요소를 감지하는 함수
 function formatDropdown(dropdown) {
     const info = {
@@ -67,7 +71,7 @@ function formatDropdown(dropdown) {
 function selectKorea(dropdown) {
     dropdown.options.forEach(option => {
         // koreaDictionary에 포함된 게 있는 지 확인
-        if (!koreaDictionary.includes(option.text.toLowerCase())) {
+        if (!koreaDictionary.includes(normalizeCountryText(option.text))) {
             return;
         }
 
@@ -114,7 +118,7 @@ window.addEventListener('click', (event) => {
   
   function selectReactSelect(allOptions) {
     allOptions.forEach((option) => {
-      const text = option.textContent.trim().toLowerCase();
+      const text = normalizeCountryText(option.textContent);
       if (koreaDictionary.includes(text)) {
         option.click();
       }
