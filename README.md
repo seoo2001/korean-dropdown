@@ -7,7 +7,7 @@
 
 ## 데모
 
-[사이트 방문](https://dropdown.ilez.xyz)
+[사이트 방문](https://dropdown.djangnan.org)
 
 ## 주요 기능
 
@@ -32,6 +32,10 @@ korean-dropdown/
 ├── web/ # 데모용 웹 페이지
 └── README.md
 ```
+
+## 기여하기
+
+이 프로젝트에 기여하고 싶으시다면 [CONTRIBUTING.md](./CONTRIBUTING.md)를 읽어주세요.
 
 ## 제작자
 
