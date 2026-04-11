@@ -57,7 +57,10 @@ const PrivacyPolicyPage = () => {
           </Button>
         </div>
       </header>
-      
+      <div className="w-full bg-amber-50 border-b border-amber-200 py-2 px-4 text-center text-sm text-amber-800">
+        KoreaDropdown 서비스가 2026년 4월 내에 새로운 운영 주체로 이관될 예정입니다.
+      </div>
+
       <main className="flex-1 break-keep">
         {/* Hero Section */}
         <section className="w-full py-12 md:py-24 lg:py-32">
@@ -231,11 +234,31 @@ const PrivacyPolicyPage = () => {
                 </CardHeader>
               </Card>
 
+              <Card className="border-amber-200 bg-amber-50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-amber-800">
+                    <FileText className="h-5 w-5" />
+                    7. 서비스 이관에 따른 개인정보 이전 안내
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed space-y-4">
+                    <div>
+                      KoreaDropdown 서비스는 2026년 4월 내에 새로운 운영 주체로 이관될 예정입니다. 이에 따라 서비스 운영 주체가 변경되며, 관련 정보가 새로운 운영 주체에게 이전될 수 있습니다.
+                    </div>
+                    <ul className="list-disc pl-6 space-y-1">
+                      <li>이관 예정 시기: 2026년 4월 내</li>
+                      <li>이관 완료 시 개인정보 처리 주체가 변경됩니다</li>
+                      <li>변경된 운영 주체의 개인정보처리방침이 새롭게 적용될 예정입니다</li>
+                      <li>이전 일정 및 세부 사항은 웹사이트를 통해 사전에 공지할 예정입니다</li>
+                    </ul>
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FileText className="h-5 w-5" />
-                    7. 고지의 의무
+                    8. 고지의 의무
                   </CardTitle>
                   <CardDescription className="text-base leading-relaxed space-y-4">
                     <div>

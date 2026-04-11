@@ -75,6 +75,9 @@ const LandingPage = () => {
           </Button>
         </div>
       </header>
+      <div className="w-full bg-amber-50 border-b border-amber-200 py-2 px-4 text-center text-sm text-amber-800">
+        KoreaDropdown 서비스가 2026년 4월 내에 새로운 운영 주체로 이관될 예정입니다.
+      </div>
       <main className="flex-1 break-keep">
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto max-w-full px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
